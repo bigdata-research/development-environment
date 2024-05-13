@@ -1,0 +1,16 @@
+services: 
+  # https://medium.com/@ashkangoleh/implementing-change-data-capture-cdc-with-docker-postgresql-mongodb-kafka-and-debezium-a-c49b2b38a88c
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-configs/rs-initiate.js:/docker-entrypoint-initdb.d/rs-initiate.js
+    ports:
+      - 27017:27017
+    command: ["mongod","--replSet", "rs0", "--bind_ip_all"]
+
+volumes:
+  mongodb_data:
+    driver: local

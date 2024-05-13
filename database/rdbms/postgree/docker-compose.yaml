@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  # postgres:
+  #   image: postgres:12.19-bullseye
+  #   ports:
+  #     - 5432:5432
+  #   # volumes:
+  #   #   - ~/apps/postgres:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_PASSWORD=admin
+  #     - POSTGRES_USER=admin
+  #     - POSTGRES_DB=postgres
+      
+  db:
+    image: postgres:12.19-bullseye
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}:-admin
+      - POSTGRES_USER=${POSTGRES_USER}:-admin
+      - POSTGRES_DB=${POSTGRES_DB}:-postgres
+    command: ["postgres", "-c", "wal_level=logical"]
+    # volumes:
+    #   - ./sdb/data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "psql", "-U", "postgres", "-c", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2048m"
