@@ -26,6 +26,7 @@ services:
       options:
         max-size: "2048m"
 
+        
 volumes:
   mysql_data:
     driver: local
