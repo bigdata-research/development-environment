@@ -1,0 +1,2 @@
+1. Create Folder : mkdir -p ./dags ./logs ./plugins ./config
+2. create env : AIRFLOW_UID=197609
