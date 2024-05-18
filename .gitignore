@@ -1,0 +1,3 @@
+orchestration/airflow/config/*
+orchestration/airflow/dags/*
+orchestration/airflow/logs/*
