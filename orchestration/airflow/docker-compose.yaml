@@ -82,7 +82,7 @@ x-airflow-common:
     &airflow-common-depends-on
     redis:
       condition: service_healthy
-    postgres:
+    postgres-airflow:
       condition: service_healthy
 
 services:

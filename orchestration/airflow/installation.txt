@@ -1,2 +1,7 @@
 1. Create Folder : mkdir -p ./dags ./logs ./plugins ./config
 2. create env : AIRFLOW_UID=197609
+3. Initialize database : docker compose up airflow-init
+4. Cleaning-up the environment : docker compose down --volumes --remove-orphans
+5. docker compose up
+6. Web Interface in : http://localhost:8080, user & password : airflow:airflow 
+7. Cleaning up : docker compose down --volumes --rmi all
