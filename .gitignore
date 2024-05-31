@@ -1,3 +1,6 @@
 orchestration/airflow/config/*
 orchestration/airflow/dags/*
 orchestration/airflow/logs/*
+
+# Oracle 
+database/rdbms/oracle/dockerfiles/19.3.0/LINUX.X64_193000_db_home.zip
