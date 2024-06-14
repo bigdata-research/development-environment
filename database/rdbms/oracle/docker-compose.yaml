@@ -1,0 +1,38 @@
+services:
+  oracle:
+    image: oracle/database:19.3.0-ee
+    container_name: oracle
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+      - "2484:2484"
+    environment:
+      - ORACLE_SID=ORCLCDB          # System Identifier for the Oracle database
+      - ORACLE_PDB=ORCLPDB1         # Pluggable Database name
+      - ORACLE_PWD=top_secret       # Password for the SYS and SYSTEM users
+      - ORACLE_CHARACTERSET=AL32UTF8 # Character set for the database
+      - ENABLE_ARCHIVELOG=true      # Enable archive logging
+      - ENABLE_TCPS=true            # Enable TCPS (secure) protocol
+    volumes:
+      - oracledb-19c:/opt/oracle/oradata
+    ulimits:
+      nofile:
+        soft: 1024                  # Soft limit for the number of open files
+        hard: 65535                 # Hard limit for the number of open files
+      nproc:
+        soft: 2047                  # Soft limit for the number of processes
+        hard: 16384                 # Hard limit for the number of processes
+      stack:
+        soft: 10485760              # Soft limit for the stack size
+        hard: 33554432              # Hard limit for the stack size
+      memlock:                      # Maximum locked-in-memory address space
+        soft: 3221225472
+        hard: 3221225472
+    deploy:
+      resources:
+        limits:
+          cpus: "8"                 # Limit the container to 8 CPUs
+          memory: 15g               # Limit the container to 15 GB of memory
+
+volumes:
+  oracledb-19c:

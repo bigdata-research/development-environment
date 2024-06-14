@@ -7,5 +7,7 @@ Requirements:
 
 - build image : ./buildContainerImage.sh -e -v 19.3.0 -p
 
+Can see reference github : https://github.com/steveswinsburg/oracle19c-docker
+
 If you have trouble when creating image, please see documentation : https://github.com/oracle/docker-images.git
 
